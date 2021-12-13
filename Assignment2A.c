@@ -72,7 +72,7 @@ int main()
     printf("\nEnter Array Elements\n");             // message to user
     for(int i = 0; i < n; i++)                      // looping till n in order to scan elements one by one
     {
-        scanf("%d",&arrOfEle[i]);
+        scanf("%d",&arrOfEle[i]);                   // scanning array elements 1 by 1
     }
 
     printf("\nINITIALLY THE ARRAY IS \n");          // user message
