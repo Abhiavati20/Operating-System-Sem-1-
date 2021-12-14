@@ -1,12 +1,13 @@
+// the following file is implementing shortest job first algorithm premptive
 // header file
 #include <stdio.h>
 
 // compilation and execution of program starts from main function
 int main()
 {
-    int arrivalTime[10];                                // arrival time array
-    int burstTime[10];                                  // burst time array
-    int temp[10];                                       // temporary array
+    int arrivalTime[10];                                            // arrival time array
+    int burstTime[10];                                              // burst time array
+    int temp[10];                                                   // temporary array
 
     int i, smallest, count = 0, time;                               // some index variables and count variables
 

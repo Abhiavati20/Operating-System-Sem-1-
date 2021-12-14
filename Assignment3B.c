@@ -1,3 +1,4 @@
+// following program is implemented using round robin
 // including header files
 #include <stdio.h>
 
@@ -33,33 +34,34 @@ int main()
     printf("\nENTER TIME QUANTUM : ");                              // message to user
     scanf("%d", &timeQuantum);                                      // scanning time quantum
 
-    for (total = 0, i = 0; x != 0;)
+    for (total = 0, i = 0; x != 0;)                                 // looping untill all process are executed
     {
-        if (temp[i] <= timeQuantum && temp[i] > 0)
+        if (temp[i] <= timeQuantum && temp[i] > 0)                  // check the value of process burst time
         {
-            total = total + temp[i];
-            temp[i] = 0;
-            x--;
-            wait_time[i] = wait_time[i] + total - arrivalTime[i] - burstTime[i];
-            turnaround_time[i] = turnaround_time[i] + total - arrivalTime[i];
+            // if burst time is less than quantum time then process will be completely executed
+            total = total + temp[i];                                // calculating total time 
+            temp[i] = 0;                                            // now making that process burst time = 0
+            x--;                                                    // decrementing 
+            wait_time[i] = wait_time[i] + total - arrivalTime[i] - burstTime[i];    // calculating wait time of ith process
+            turnaround_time[i] = turnaround_time[i] + total - arrivalTime[i];       // calculating turn around time of ith process
         }
-        else if (temp[i] > 0)
-        {
-            temp[i] = temp[i] - timeQuantum;
-            total = total + timeQuantum;
+        else if (temp[i] > 0)                                       // if burst time > 0 and burst time > quantum time
+        {   
+            temp[i] = temp[i] - timeQuantum;                        // execute the process for time quantum and subtract time quantum from burst time
+            total = total + timeQuantum;                            // add time quantum to total time
         }
 
-        if (i == noOfProcess - 1)
+        if (i == noOfProcess - 1)                                   // check if we are executing 2nd last process
         {
-            i = 0;
+            i = 0;                                                  // if true reassign index i to 0
         }
-        else if (arrivalTime[i + 1] <= total)
+        else if (arrivalTime[i + 1] <= total)                       // check if arrival of next process is less than total time
         {
-            i++;
+            i++;                                                    // if true then increment index i and proceed to next process
         }
         else
         {
-            i = 0;
+            i = 0;                                                  // else reassign index i to 0
         }
     }
     for(i = 0; i < noOfProcess; i++)                                // looping till no of process
@@ -74,10 +76,11 @@ int main()
     printf("\n\nID \t AT \t BT \t CT \t TAT \t WT \n");             // table header
     for(i = 0; i < noOfProcess; i++)
     {
+        // printing table row
         printf("%d \t%d \t%d \t%.1lf \t%.1lf \t%.1lf \n",i,arrivalTime[i],burstTime[i],(turnaround_time[i]+arrivalTime[i]),turnaround_time[i],wait_time[i]);
     }
     
-    printf("\nAverage Waiting Time:%.2f\n", avg_waiting_time);
-    printf("Average Turnaround Time:%lf\n", avg_turnaround_time);
-    return 0;
+    printf("\nAverage Waiting Time:%.2f\n", avg_waiting_time);      // printing average waiting time
+    printf("Average Turnaround Time:%lf\n", avg_turnaround_time);   // printing turn around time
+    return 0;                                                       // return 0
 }
