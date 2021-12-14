@@ -1,3 +1,4 @@
+.vscode/
 assign2a
 child.exe
 parent
@@ -8,3 +9,6 @@ assign4b
 assign5
 assign6
 assign7a
+client
+server
+assign8
