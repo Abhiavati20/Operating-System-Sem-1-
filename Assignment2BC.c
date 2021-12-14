@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < argc; i++)                          // looping through string array i.e. cmd line arguements
         arrint[i] = atoi(argv[i]);                          // convert string into int and store it into array
     
-    printf("\nREVERSING THE ARRAY\n");
+    printf("\nREVERSING THE ARRAY\n");                      // user message
     for (int i = 0; i < argc; i++)                          // looping through array
         revarr[i] = arrint[argc - i - 1];                   // reversing the array
 
@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
     printf("\n[ ");                                         // print message
     int j =0;           
     for(j = 0; j < argc-1; j++)                            // looping through array
-        printf("%d, ",revarr[j]);
-    printf("%d ]\n",revarr[j]);
+        printf("%d, ",revarr[j]);                          // printing array elements
+    printf("%d ]\n",revarr[j]);                            // printing last element
     
     return 0;
 }

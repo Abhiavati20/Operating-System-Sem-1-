@@ -18,9 +18,9 @@ void printArray(int *arr, int size)
 {
     int i = 0;                                      // index variable
     printf("\n[ ");                                 // print message
-    for(; i < size-1; i++)                            // looping through array
-        printf("%d, ",arr[i]);
-    printf("%d ]\n",arr[i]);
+    for(; i < size-1; i++)                          // looping through array
+        printf("%d, ",arr[i]);                      // printing array elements
+    printf("%d ]\n",arr[i]);                        // printing last element
 }
 
 // a function to sort the array of elements
@@ -30,7 +30,7 @@ void selectionSort(int *arr, int size)
     int i, j, minIndex;                             // index variables
     for(i = 0; i < size; i++)                       // looping through the array
     {
-        minIndex = i;
+        minIndex = i;                               // assigning minIndex to i
         for(j = i+1; j < size; j++)                 // nested loop 
             if(arr[j] < arr[minIndex])              // check if jth element is smallest then i th element
                 minIndex = j;                       // if true then change the minIndex
@@ -59,6 +59,16 @@ int main()
 
     printf("PARENT PROCESS ID : %d", getpid());     // user message 
 
+    printf("\nSORTING ARRAY ELEMENTS\n");           // user message
+                
+    selectionSort(arrOfEle, n);                     // invoking bubble sort
+
+    printf("\nSORTING COMPLETED\n");                // user message
+
+    printf("PRINTING SORTED ARRAY");                // message to user
+
+    printArray(arrOfEle, n);                        // invoking array print function
+
     // in order to represent the process ids we will use pid_t
     // pid_t stands for process identification
     pid_t process;
@@ -86,11 +96,12 @@ int main()
             arg[i] = (char *)malloc(sizeof(char));                                                  // storing the argument on heap
             strcpy(arg[i], str1);                                                                   // copying the buffer string into arg[i]
         }
-        arg[n] = NULL;
+        arg[n] = NULL;                                  // nth arguement is null
         
-        printf("\nStarted Executing EXECVE \n");
-        execv("./child.exe", arg);
-        printf("EXECV EXECUTION COMPLETED");
+        printf("\nStarted Executing EXECVE \n");        // user message
+        // first parameter - the file to be executed and second parameter - the command line arguements to be passed
+        execv("./child.exe", arg);                      // invoking execv function
+        printf("EXECV EXECUTION COMPLETED");            // user message
     }
     else if (process > 0)
     {
@@ -98,16 +109,11 @@ int main()
         wait(NULL);                                     // will block parent process until any of its children has finished
         printf("\nPARENT PROCESS WITH PID : %d ", getpid()); // user message
         printf(" AND ITS CHILD ID WAS: %d\n", process);  //user message
-                
-        printf("\nSORTING ARRAY ELEMENTS\n");           // user message
-                
-        selectionSort(arrOfEle, n);                        // invoking bubble sort
-
-        printf("\nSORTING COMPLETED\n");                // user message
-
-        printf("PRINTING SORTED ARRAY");                // message to user
-
-        printArray(arrOfEle, n);                        // invoking array print function
+    }
+    else
+    {
+        // printing unsuccessful message
+        printf("\nunsuccessful fork! child was not created\n"); 
     }
     return 0;
 }

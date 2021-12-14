@@ -49,17 +49,17 @@ void printArray(int *arr, int size)
 {
     int i = 0;                                      // index variable
     printf("\n[ ");                                 // print message
-    for(; i < size-1; i++)                            // looping through array
-        printf("%d, ",arr[i]);
-    printf("%d ]\n",arr[i]);
+    for(; i < size-1; i++)                          // looping through array
+        printf("%d, ",arr[i]);                      // printing array elements
+    printf("%d ]\n",arr[i]);                        // printing last element of array
 }
 
 // the following function is usefull for providing user choice menu
 void userMenu()
 {
-    printf("\n1. BASIC EXECUTION");
-    printf("\n2. ORPHAN STATE EXECUTION");
-    printf("\n3. ZOMBIE STATE EXECUTION");
+    printf("\n1. BASIC EXECUTION");                 // option for basic execution
+    printf("\n2. ORPHAN STATE EXECUTION");          // option for orphan state demonstration
+    printf("\n3. ZOMBIE STATE EXECUTION");          // option for zombie state demonstration
 }
 
 // execution and compilation of program will start from main function
@@ -93,7 +93,7 @@ int main()
     pid_t process;
     
     // using system call we need to create a child process which will run concurrently with process that makes call
-    process = fork();                           // fork returns some value
+    process = fork();                               // fork returns some value
     // fork returns negative value i.e. child process creation unsuccessful
     // fork return positive value i.e. Returned to parent process and the value is process id of the child
     // fork return zero value i.e. returned newly created child process
@@ -130,7 +130,7 @@ int main()
                 printf("\nWE ARE IN PARENT PROCESS\n");         // user message
                 wait(NULL);                                     // will block parent process until any of its children has finished
                 printf("\nPARENT PROCESS WITH PID : %d ", getpid()); // user message
-                printf(" AND ITS CHILD ID WAS: %d\n", process);  //user message
+                printf(" AND ITS CHILD ID WAS: %d\n", process); //user message
                 
                 printf("\nSORTING ARRAY ELEMENTS\n");           // user message
                 
@@ -208,20 +208,20 @@ int main()
             else
             {
                 sleep(5);
-                // in the Zombie state parent process will wait for 5 sec
-                printf("\nWE ARE IN PARENT PROCESS\n");          // user message
+                // in the Zombie state parent process will wait for 5 sec so that child goes in zombie state
+                printf("\nWE ARE IN PARENT PROCESS\n");         // user message
                 printf("\nPARENT PROCESS WITH PID : %d ", getpid()); // user message
                 printf("AND ITS CHILD ID WAS: %d\n", process); //user message
                 
-                printf("\nSORTING ARRAY ELEMENTS\n");           // user message
+                printf("\nSORTING ARRAY ELEMENTS\n");          // user message
                 
-                bubbleSort(arrOfEle, n);                        // invoking bubble sort
+                bubbleSort(arrOfEle, n);                       // invoking bubble sort
 
-                printf("\nSORTING COMPLETED\n");                // user message
+                printf("\nSORTING COMPLETED\n");               // user message
 
-                printf("PRINTING SORTED ARRAY");                // message to user
+                printf("PRINTING SORTED ARRAY");               // message to user
 
-                printArray(arrOfEle, n);                        // invoking array print function 
+                printArray(arrOfEle, n);                       // invoking array print function 
             }
             break;
         default:
